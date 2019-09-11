@@ -13,7 +13,10 @@ const startServer = async () => {
     // Handle SPA
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
   }
-  app.listen(process.env.PORT, err => {
+
+  const port = process.env.PORT || 3000;
+
+  app.listen(port, err => {
     if (err) {
       console.log(err);
       process.exit(1);
@@ -21,7 +24,7 @@ const startServer = async () => {
     }
     console.log(`
       ####################################
-      🛡️  Server listening on port: ${process.env.PORT} 🛡️ 
+      🛡️  Server listening on port: ${port} 🛡️ 
       ####################################
     `);
   });
