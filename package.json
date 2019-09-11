@@ -1,0 +1,36 @@
+{
+  "name": "vue-express-mongodb-app",
+  "version": "1.0.0",
+  "description": "Full stack vue, express, and mongodb app",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alessandro-Commodari/vue-express-mongodb-app.git"
+  },
+  "author": "Alessandro Commodari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alessandro-Commodari/vue-express-mongodb-app/issues"
+  },
+  "homepage": "https://github.com/Alessandro-Commodari/vue-express-mongodb-app#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "eslint": "^6.3.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  }
+}
