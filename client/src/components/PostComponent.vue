@@ -1,14 +1,13 @@
 <template>
   <div class="container">
     <h1>Latest Posts</h1>
+    <label for="create-post">Say Something... </label>
     <div class="create-post">
-      <label for="create-post">Say Something... </label>
       <input type="text" id="create-post" v-model="text" placeholder="Create a post">
-      <button v-on:click="createPost">Post!</button>
+      <button v-on:click="createPost">Post</button>
     </div>
-    <hr>
     <p class="error" v-if="error">{{ error }}</p>
-    <div class="posts-container">
+    <div class="posts-container" title="double click to delete">
       <div class="post" 
         v-for="(post, index) in posts" 
         v-bind:item="post" 
@@ -16,7 +15,7 @@
         v-bind:key="post._id"
         v-on:dblclick="deletePost(post._id)"
       >
-        {{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}` }}
+        <p class="created-at">{{ `${post.createdAt.getDate()}/${post.createdAt.getMonth()}/${post.createdAt.getFullYear()}` }}</p>
         <p class="text">{{ post.text }}</p>
       </div>
     </div>
@@ -46,6 +45,7 @@ export default {
     async createPost() {
       await PostService.createPost(this.text);
       this.posts = await PostService.getPosts();
+      this.text = '';
     },
     async deletePost(id) {
       await PostService.deletePost(id);
@@ -58,38 +58,100 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div.container {
-  max-width: 800px;
-  margin: 0 auto;
+  width: 70vw;
+}
+
+h1 {
+  color: white;
 }
 
 p.error {
-  border: 1px solid #ff5b5f;
-  background-color: #ffc5c1;
-  padding: 10px;
-  margin-bottom: 15px;
+  background-color: #fa766d;
+  padding: 1rem;
+  margin-bottom: 2vh;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight:bolder;
+  color: #272727;
 }
 
 div.post {
   position: relative;
-  border: 1px solid #5bd658;
-  background-color: #bcffb8;
-  padding: 10px 10px 30px 10px;
-  margin-bottom: 15px;
+  background-color: #72cc6e;
+  box-shadow: 0.2rem .3rem .9rem;
+  padding: 1rem;
+  margin-bottom: 2vh;
+  border-radius: 0.5rem;
 }
 
-div.created-at{
+.post:hover {
+  cursor: pointer;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #272727;
+}
+
+.created-at{
   position: absolute;
   top: 0;
   left: 0;
-  padding: 5px 15 px 5px 15px;
-  background-color: darkgreen;
-  color: white;
-  font-size: 13px;
+  padding: 0 .5rem; 
+  font-size: .8rem;
+  opacity: .6;
+  font-style: oblique;
+  letter-spacing: 0.1rem;
+  font-weight:700;
+    color: #272727;
 }
 
-p.text {
-  font-size: 22px;
+.create-post { 
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3vh;
+}
+
+label {
+  display: block;
+  color: white;
   font-weight: 700;
-  margin-bottom: 0;
+  font-size: 1rem;
+  margin-bottom: 2.5vh;
+  font-style: italic;
+}
+
+button {
+  margin: 0;
+  padding: .6rem .5rem;
+  border-radius: .5rem;
+  width: 20%;
+  outline: none;
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: rgb(212, 212, 212);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(184, 184, 184);
+}
+
+#create-post {
+  outline: none;
+  display: inline-block;
+  width: 70%;
+  border: none;
+  margin: 0;
+  padding: .5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+#create-post:focus {
+  outline: none;
+  position: relative;
 }
 </style>
